@@ -1,0 +1,257 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'moor_db.dart';
+
+// **************************************************************************
+// MoorGenerator
+// **************************************************************************
+
+// ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
+class HomepageData extends DataClass implements Insertable<HomepageData> {
+  final int userId;
+  final String username;
+  final double balance;
+  HomepageData(
+      {@required this.userId, @required this.username, @required this.balance});
+  factory HomepageData.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+      {String prefix}) {
+    final effectivePrefix = prefix ?? '';
+    final intType = db.typeSystem.forDartType<int>();
+    final stringType = db.typeSystem.forDartType<String>();
+    final doubleType = db.typeSystem.forDartType<double>();
+    return HomepageData(
+      userId:
+          intType.mapFromDatabaseResponse(data['${effectivePrefix}user_id']),
+      username: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}username']),
+      balance:
+          doubleType.mapFromDatabaseResponse(data['${effectivePrefix}balance']),
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (!nullToAbsent || userId != null) {
+      map['user_id'] = Variable<int>(userId);
+    }
+    if (!nullToAbsent || username != null) {
+      map['username'] = Variable<String>(username);
+    }
+    if (!nullToAbsent || balance != null) {
+      map['balance'] = Variable<double>(balance);
+    }
+    return map;
+  }
+
+  HomepageCompanion toCompanion(bool nullToAbsent) {
+    return HomepageCompanion(
+      userId:
+          userId == null && nullToAbsent ? const Value.absent() : Value(userId),
+      username: username == null && nullToAbsent
+          ? const Value.absent()
+          : Value(username),
+      balance: balance == null && nullToAbsent
+          ? const Value.absent()
+          : Value(balance),
+    );
+  }
+
+  factory HomepageData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return HomepageData(
+      userId: serializer.fromJson<int>(json['userId']),
+      username: serializer.fromJson<String>(json['username']),
+      balance: serializer.fromJson<double>(json['balance']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'userId': serializer.toJson<int>(userId),
+      'username': serializer.toJson<String>(username),
+      'balance': serializer.toJson<double>(balance),
+    };
+  }
+
+  HomepageData copyWith({int userId, String username, double balance}) =>
+      HomepageData(
+        userId: userId ?? this.userId,
+        username: username ?? this.username,
+        balance: balance ?? this.balance,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('HomepageData(')
+          ..write('userId: $userId, ')
+          ..write('username: $username, ')
+          ..write('balance: $balance')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      $mrjf($mrjc(userId.hashCode, $mrjc(username.hashCode, balance.hashCode)));
+  @override
+  bool operator ==(dynamic other) =>
+      identical(this, other) ||
+      (other is HomepageData &&
+          other.userId == this.userId &&
+          other.username == this.username &&
+          other.balance == this.balance);
+}
+
+class HomepageCompanion extends UpdateCompanion<HomepageData> {
+  final Value<int> userId;
+  final Value<String> username;
+  final Value<double> balance;
+  const HomepageCompanion({
+    this.userId = const Value.absent(),
+    this.username = const Value.absent(),
+    this.balance = const Value.absent(),
+  });
+  HomepageCompanion.insert({
+    this.userId = const Value.absent(),
+    @required String username,
+    @required double balance,
+  })  : username = Value(username),
+        balance = Value(balance);
+  static Insertable<HomepageData> custom({
+    Expression<int> userId,
+    Expression<String> username,
+    Expression<double> balance,
+  }) {
+    return RawValuesInsertable({
+      if (userId != null) 'user_id': userId,
+      if (username != null) 'username': username,
+      if (balance != null) 'balance': balance,
+    });
+  }
+
+  HomepageCompanion copyWith(
+      {Value<int> userId, Value<String> username, Value<double> balance}) {
+    return HomepageCompanion(
+      userId: userId ?? this.userId,
+      username: username ?? this.username,
+      balance: balance ?? this.balance,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (userId.present) {
+      map['user_id'] = Variable<int>(userId.value);
+    }
+    if (username.present) {
+      map['username'] = Variable<String>(username.value);
+    }
+    if (balance.present) {
+      map['balance'] = Variable<double>(balance.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HomepageCompanion(')
+          ..write('userId: $userId, ')
+          ..write('username: $username, ')
+          ..write('balance: $balance')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $HomepageTable extends Homepage
+    with TableInfo<$HomepageTable, HomepageData> {
+  final GeneratedDatabase _db;
+  final String _alias;
+  $HomepageTable(this._db, [this._alias]);
+  final VerificationMeta _userIdMeta = const VerificationMeta('userId');
+  GeneratedIntColumn _userId;
+  @override
+  GeneratedIntColumn get userId => _userId ??= _constructUserId();
+  GeneratedIntColumn _constructUserId() {
+    return GeneratedIntColumn('user_id', $tableName, false,
+        hasAutoIncrement: true, declaredAsPrimaryKey: true);
+  }
+
+  final VerificationMeta _usernameMeta = const VerificationMeta('username');
+  GeneratedTextColumn _username;
+  @override
+  GeneratedTextColumn get username => _username ??= _constructUsername();
+  GeneratedTextColumn _constructUsername() {
+    return GeneratedTextColumn('username', $tableName, false,
+        minTextLength: 1, maxTextLength: 20);
+  }
+
+  final VerificationMeta _balanceMeta = const VerificationMeta('balance');
+  GeneratedRealColumn _balance;
+  @override
+  GeneratedRealColumn get balance => _balance ??= _constructBalance();
+  GeneratedRealColumn _constructBalance() {
+    return GeneratedRealColumn(
+      'balance',
+      $tableName,
+      false,
+    );
+  }
+
+  @override
+  List<GeneratedColumn> get $columns => [userId, username, balance];
+  @override
+  $HomepageTable get asDslTable => this;
+  @override
+  String get $tableName => _alias ?? 'homepage';
+  @override
+  final String actualTableName = 'homepage';
+  @override
+  VerificationContext validateIntegrity(Insertable<HomepageData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('user_id')) {
+      context.handle(_userIdMeta,
+          userId.isAcceptableOrUnknown(data['user_id'], _userIdMeta));
+    }
+    if (data.containsKey('username')) {
+      context.handle(_usernameMeta,
+          username.isAcceptableOrUnknown(data['username'], _usernameMeta));
+    } else if (isInserting) {
+      context.missing(_usernameMeta);
+    }
+    if (data.containsKey('balance')) {
+      context.handle(_balanceMeta,
+          balance.isAcceptableOrUnknown(data['balance'], _balanceMeta));
+    } else if (isInserting) {
+      context.missing(_balanceMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {userId};
+  @override
+  HomepageData map(Map<String, dynamic> data, {String tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
+    return HomepageData.fromData(data, _db, prefix: effectivePrefix);
+  }
+
+  @override
+  $HomepageTable createAlias(String alias) {
+    return $HomepageTable(_db, alias);
+  }
+}
+
+abstract class _$AppDatabase extends GeneratedDatabase {
+  _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
+  $HomepageTable _homepage;
+  $HomepageTable get homepage => _homepage ??= $HomepageTable(this);
+  @override
+  Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
+  @override
+  List<DatabaseSchemaEntity> get allSchemaEntities => [homepage];
+}
